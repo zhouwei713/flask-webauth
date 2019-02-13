@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import  "bootstrap/wtf.html" as wtf %}
+{% block title %}Login{% endblock %}
+{% block page_content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<div class="page-header">
+    <h1>Home</h1>
+</div>
+<div class="col-md-4">
+    这是首页
+</div>
+<div class="col-md-12">
+{% if current_user.is_authenticated %}
+    {{ current_user.username }}
+    {{ name }}
+    <div>
+    <img style="-webkit-user-select: none;" src="{{ avatar }}" />
+    </div>
+{% else %}
+    Your are not login yet
+{% endif %}
+</div>
+{% endblock %}
