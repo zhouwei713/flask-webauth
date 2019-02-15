@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80e3fc6b-b578-4986-aebc-4537bbe5f3f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/auth/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/auth/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myweb.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/myweb.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="80e3fc6b-b578-4986-aebc-4537bbe5f3f3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +22,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="confirm" value="1" />
-          <entry key="gunicorn" value="1" />
+          <entry key="gunicorn" value="2" />
           <entry key="html" value="29" />
           <entry key="md" value="1" />
           <entry key="py" value="33" />
@@ -45,7 +35,7 @@
         <counts>
           <entry key="HTML" value="29" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="PLAIN_TEXT" value="11" />
           <entry key="Python" value="33" />
         </counts>
       </usages-collector>
@@ -111,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/auth/forms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="815">
@@ -122,6 +112,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gunicorn">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -467,7 +462,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-675" width="2576" height="1416" extended-state="6" />
+    <frame x="1358" y="-675" width="2576" height="1416" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14499606" />
@@ -522,9 +517,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/test01.html" />
-    <entry file="file://$PROJECT_DIR$/gunicorn">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -779,6 +771,9 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gunicorn">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
