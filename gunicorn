@@ -5,10 +5,10 @@ import multiprocessing
 
 debug = True
 loglevel = 'debug'
-#bind = '127.0.0.1:5001'
-bind = '0.0.0.0:5001'
+#bind = '127.0.0.1:5005'
+bind = '0.0.0.0:5005'
 #pidfile = 'pid/gunicorn.pid' 
-logfile = 'log/debug.log'
+logfile = '/home/log/debug.log'
 
 workers = multiprocessing.cpu_count() * 2 + 1
 worker_class = 'gevent' 
