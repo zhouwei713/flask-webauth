@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80e3fc6b-b578-4986-aebc-4537bbe5f3f3" name="Default Changelist" comment="" />
+    <list default="true" id="80e3fc6b-b578-4986-aebc-4537bbe5f3f3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/gunicorn" beforeDir="false" afterPath="$PROJECT_DIR$/gunicorn" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,7 @@
           <entry key="py" value="33" />
           <entry key="requirements" value="4" />
           <entry key="resetpwdemail" value="1" />
+          <entry key="sh" value="1" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
@@ -35,23 +38,25 @@
         <counts>
           <entry key="HTML" value="29" />
           <entry key="Markdown" value="1" />
-          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="PLAIN_TEXT" value="12" />
           <entry key="Python" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="8" />
+          <entry key="gunicorn" value="2" />
           <entry key="html" value="1129" />
           <entry key="py" value="9334" />
           <entry key="requirements" value="38" />
           <entry key="resetpwdemail" value="16" />
+          <entry key="sh" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1129" />
-          <entry key="PLAIN_TEXT" value="62" />
+          <entry key="PLAIN_TEXT" value="78" />
           <entry key="Python" value="9334" />
         </counts>
       </usages-collector>
@@ -116,7 +121,20 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gunicorn">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="58" lean-forward="true" selection-start-column="58" selection-end-column="58" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -137,18 +155,6 @@
                 <element signature="e#63#79#0" expanded="true" />
                 <marker date="1550197011163" expanded="true" signature="1593:1711" ph="..." />
                 <marker date="1550197011163" expanded="true" signature="1751:2076" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/auth/register.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-              <folding>
-                <element signature="e#305#312#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -229,10 +235,12 @@
         <option value="$PROJECT_DIR$/app/templates/manageuser.html" />
         <option value="$PROJECT_DIR$/app/auth/views.py" />
         <option value="$PROJECT_DIR$/app/auth/forms.py" />
+        <option value="$PROJECT_DIR$/run.sh" />
+        <option value="$PROJECT_DIR$/gunicorn" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1358" />
     <option name="y" value="-675" />
     <option name="width" value="2576" />
@@ -462,7 +470,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-675" width="2576" height="1416" extended-state="7" />
+    <frame x="1358" y="-675" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14499606" />
@@ -772,8 +780,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="58" lean-forward="true" selection-start-column="58" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gunicorn">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
