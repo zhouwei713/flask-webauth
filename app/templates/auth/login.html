@@ -2,6 +2,14 @@
 {% import  "bootstrap/wtf.html" as wtf %}
 {% block title %}Login{% endblock %}
 {% block page_content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
 <div class="page-header">
     <h1>Login</h1>
 </div>
@@ -30,5 +38,20 @@
     -->
 <div class="col-md-12">
     <a class="btn btn-primary" href="{{ url_for('auth.githublogin') }}">Login with GitHub</a>
+</div>
+<div class="col-md-12">
+    <a href="{{ url_for('auth.resetpwdemail') }}">
+        忘记密码，重置
+    </a>
+</div>
+<div class="col-md-12">
+    <a href="{{ url_for('auth.register') }}">
+        点击此处注册,不需要确认邮箱
+    </a>
+</div>
+<div class="col-md-12">
+    <a href="{{ url_for('auth.register_confirm') }}">
+        点击此处注册,需要确认邮箱
+    </a>
 </div>
 {% endblock %}

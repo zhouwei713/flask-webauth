@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import  "bootstrap/wtf.html" as wtf %}
+{% block title %}Manage User{% endblock %}
+{% block page_content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<div class="page-header">
+    <h1>管理用户</h1>
+</div>
+
+<div class="col-md-12">
+    <a href="{{ url_for('auth.changepwd') }}">
+        修改密码
+    </a>
+</div>
+<div class="col-md-12">
+    <a href="{{ url_for('auth.changemail') }}">
+        修改邮箱
+    </a>
+</div>
+{% endblock %}

@@ -34,4 +34,17 @@ def secret():
     return 'Only authenticated users are allowed!'
 
 
+@main.route('/needconfirm')
+@login_required
+def needconfirm():
+    print(request.endpoint)
+    return 'Only confirmed users are allowed!'
+
+
+@main.route('/manageuser')
+@login_required
+def manageuser():
+    return render_template('manageuser.html')
+
+
 

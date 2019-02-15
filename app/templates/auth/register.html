@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import  "bootstrap/wtf.html" as wtf %}
+{% block title %}Register{% endblock %}
+{% block page_content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<div class="page-header">
+    <h1>Register</h1>
+</div>
+
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+
+<div class="col-md-12">
+    <a class="btn btn-primary" href="{{ url_for('auth.githublogin') }}">Login with GitHub</a>
+</div>
+
+{% endblock %}
