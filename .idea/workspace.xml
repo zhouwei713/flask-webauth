@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80e3fc6b-b578-4986-aebc-4537bbe5f3f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/gunicorn" beforeDir="false" afterPath="$PROJECT_DIR$/gunicorn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,13 +50,13 @@
           <entry key="py" value="9334" />
           <entry key="requirements" value="38" />
           <entry key="resetpwdemail" value="16" />
-          <entry key="sh" value="14" />
+          <entry key="sh" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="1129" />
-          <entry key="PLAIN_TEXT" value="86" />
+          <entry key="PLAIN_TEXT" value="92" />
           <entry key="Python" value="9334" />
         </counts>
       </usages-collector>
@@ -119,7 +119,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gunicorn">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
@@ -140,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="58" lean-forward="true" selection-start-column="58" selection-end-column="58" />
+              <caret column="57" lean-forward="true" selection-start-column="57" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -238,8 +238,8 @@
         <option value="$PROJECT_DIR$/app/templates/manageuser.html" />
         <option value="$PROJECT_DIR$/app/auth/views.py" />
         <option value="$PROJECT_DIR$/app/auth/forms.py" />
-        <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/gunicorn" />
+        <option value="$PROJECT_DIR$/run.sh" />
       </list>
     </option>
   </component>
@@ -773,13 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="58" lean-forward="true" selection-start-column="58" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -794,6 +787,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="57" lean-forward="true" selection-start-column="57" selection-end-column="57" />
         </state>
       </provider>
     </entry>
