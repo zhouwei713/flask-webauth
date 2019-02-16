@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% import  "bootstrap/wtf.html" as wtf %}
-{% block title %}Manage User{% endblock %}
+{% block title %}User List{% endblock %}
 {% block page_content %}
 <div class="container">
     {% for message in get_flashed_messages() %}
@@ -11,22 +11,17 @@
     {% endfor %}
 </div>
 <div class="page-header">
-    <h1>管理用户</h1>
+    <h1>用户列表</h1>
 </div>
 
 <div class="col-md-12">
-    <a href="{{ url_for('auth.changepwd') }}">
-        修改密码
-    </a>
+    {% for u in userlist %}
+    <p>
+    {{ u.username }}
+    <a class="btn btn-warning" href="{{ url_for('main.blockuser', username=u.username) }}">block</a>
+        <a class="btn btn-primary" href="{{ url_for('main.unblockuser', username=u.username) }}">unblock</a>
+     </p>
+    {% endfor %}
 </div>
-<div class="col-md-12">
-    <a href="{{ url_for('main.userlist') }}">
-        用户列表
-    </a>
-</div>
-<div class="col-md-12">
-    <a href="{{ url_for('auth.changemail') }}">
-        修改邮箱
-    </a>
-</div>
+
 {% endblock %}

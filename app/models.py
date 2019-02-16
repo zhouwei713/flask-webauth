@@ -27,15 +27,48 @@ class WebUser(UserMixin, db.Model):
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), default=1)
+    block_status = db.Column(db.Boolean, default=True)
 
     @staticmethod
     def init_user():
         users = WebUser.query.filter_by(username='admin').first()
+        admin_role = Role.query.filter_by(name='Admin').first()
         if users is None:
-            users = WebUser(user_id=time.time(), email='admin@123.com', username='admin', confirmed=True)
+            users = WebUser(user_id=time.time(), email='admin@123.com',
+                            username='admin', confirmed=True, role=admin_role)
         users.password = '123456'
         db.session.add(users)
         db.session.commit()
+
+    @staticmethod
+    def insert_user():
+        users = {
+            'user1': ['user1@luobo.com', 'test1', 1],
+            'user2': ['user2@luobo.com', 'test2', 1],
+            'admin1': ['admin1@luobo.com', 'admin1', 2],
+            'admin2': ['admin2@luobo.com', 'admin2', 2]
+        }
+        for u in users:
+            user = WebUser.query.filter_by(username=u[0]).first()
+            if user is None:
+                user = WebUser(user_id=time.time(), username=u, email=users[u][0],
+                               confirmed=True, role_id=users[u][2])
+                user.password = users[u][1]
+                db.session.add(user)
+            db.session.commit()
+
+    def is_admin(self):
+        if self.role_id is 2:
+            return True
+        else:
+            return False
+
+    def is_block(self):
+        if self.block_status:
+            return True
+        else:
+            return False
 
     @property
     def password(self):
@@ -92,3 +125,20 @@ class ThirdOAuth(db.Model):
     oauth_id = db.Column(db.String(128), unique=True, index=True)
     oauth_access_token = db.Column(db.String(128), unique=True, index=True)
     oauth_expires = db.Column(db.String(64), unique=True, index=True)
+
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    users = db.relationship('WebUser', backref='role')
+
+    @staticmethod
+    def init_roles():
+        roles = ['User', 'Admin']
+        for r in roles:
+            role = Role.query.filter_by(name=r).first()
+            if role is None:
+                role = Role(name=r)
+                db.session.add(role)
+        db.session.commit()

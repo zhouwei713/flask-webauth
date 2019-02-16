@@ -31,6 +31,9 @@ def login():
                 flash('Please use the third party service to login.')
                 return redirect(url_for('.login'))
             if user.verify_password(form.password.data):
+                if user.is_block() is False:
+                    flash('You have been blocked, please contact admin')
+                    return redirect(url_for('.login'))
                 login_user(user, form.remember_me.data)
                 return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password!')
@@ -73,6 +76,9 @@ def authorized(access_token):
                                oauth_id=u_id)
         db.session.add(thirduser)
         db.session.commit()
+        if user.is_block() is False:
+            flash('You have been blocked, please contact admin')
+            return redirect(url_for('.login'))
         login_user(user)
         user.email = email
         db.session.add(user)
@@ -87,6 +93,9 @@ def authorized(access_token):
         user.email = email
         db.session.add(user)
         db.session.commit()
+        if user.is_block() is False:
+            flash('You have been blocked, please contact admin')
+            return redirect(url_for('.login'))
         login_user(user)
         session['userid'] = user.user_id
         return render_template('index.html', avatar=avatar)
