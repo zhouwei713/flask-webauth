@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import  "bootstrap/wtf.html" as wtf %}
+{% block title %}Profile{% endblock %}
+{% block page_content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+<div class="page-header">
+    {% if avatar %}
+    <img style="-webkit-user-select: none;" src="{{ avatar }}" />
+    {% else %}
+    <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=128) }}">
+    {% endif %}
+    <div class="profile-header">
+        <h1>
+            {% if gituser %}
+            {{ gituser }}
+            {% elif current_user.username %}
+            {{ user.username }}
+            {% endif %}
+        </h1>
+        {% if user.nickname %}
+        <p>昵称： {{ user.nickname }}</p>
+        {% endif %}
+        {% if user.email %}
+        <p>邮箱： <a href="mailto:{{ user.email }}">{{ user.email }}</a> </p>
+        {% endif %}
+        {% if user.about_me %}
+        <p>个人介绍： {{ user.about_me }}</p>
+        {% endif %}
+        <p>
+        {% if user == current_user %}
+            <a class="btn btn-default" href="{{ url_for('main.edit_profile') }}">Edit Profile</a>
+        {% endif %}
+        </p>
+    </div>
+</div>
+
+
+
+{% endblock %}

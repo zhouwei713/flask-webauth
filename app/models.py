@@ -11,7 +11,8 @@ from flask_login import UserMixin
 from . import login_manager
 import time
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask import current_app
+from flask import current_app, request
+import hashlib
 
 
 @login_manager.user_loader
@@ -29,6 +30,16 @@ class WebUser(UserMixin, db.Model):
     confirmed = db.Column(db.Boolean, default=False)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'), default=1)
     block_status = db.Column(db.Boolean, default=True)
+    phone = db.Column(db.Integer)
+    nickname = db.Column(db.String(64))
+    about_me = db.Column(db.Text())
+    avatar_hash = db.Column(db.String(32))
+
+    def __init__(self, **kwargs):
+        super(WebUser, self).__init__(**kwargs)
+        if self.email is not None and self.avatar_hash is None:
+            self.avatar_hash = hashlib.md5(
+                self.email.lower().encode('utf-8')).hexdigest()
 
     @staticmethod
     def init_user():
@@ -116,6 +127,19 @@ class WebUser(UserMixin, db.Model):
         db.session.commit()
         return True
 
+    def gravatar(self, size=100, default='identicon', rating='g'):
+        if request.is_secure:
+            url = 'https://secure.gravatar.com/avatar'
+        else:
+            url = 'http://secure.gravatar.com/avatar'
+        email = self.email or 'test@luobo.com'
+        hash = self.avatar_hash or hashlib.md5(
+            email.lower().encode('utf-8')).hexdigest()
+        avatar = '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
+            url=url, hash=hash, size=size, default=default, rating=rating
+        )
+        return avatar
+
 
 class ThirdOAuth(db.Model):
     __tablename__ = 'thirdoauth'
@@ -125,6 +149,13 @@ class ThirdOAuth(db.Model):
     oauth_id = db.Column(db.String(128), unique=True, index=True)
     oauth_access_token = db.Column(db.String(128), unique=True, index=True)
     oauth_expires = db.Column(db.String(64), unique=True, index=True)
+
+
+class UserPhone(db.Model):
+    __tablename__ = 'userphone'
+    id = db.Column(db.Integer, primary_key=True)
+    phone = db.Column(db.Integer)
+    user_id = db.Column(db.String(64), unique=True, index=True)
 
 
 class Role(db.Model):

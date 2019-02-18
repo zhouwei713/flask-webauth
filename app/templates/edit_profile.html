@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% import  "bootstrap/wtf.html" as wtf %}
-{% block title %}User List{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 {% block page_content %}
 <div class="container">
     {% for message in get_flashed_messages() %}
@@ -11,16 +11,12 @@
     {% endfor %}
 </div>
 <div class="page-header">
-    <h1>用户列表</h1>
+    <h1>Edit Profile</h1>
 </div>
 
-<div class="col-md-12">
-    {% for u in userlist %}
-    <p>
-    {{ u.username }}
-    <a class="btn btn-warning" href="{{ url_for('main.blockuser', username=u.username) }}">block</a>
-        <a class="btn btn-primary" href="{{ url_for('main.unblockuser', username=u.username) }}">unblock</a>
-     </p>
-    {% endfor %}
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
 </div>
+
+
 {% endblock %}

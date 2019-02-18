@@ -24,15 +24,19 @@
             <ul class="nav navbar-nav">
                 <li><a href="/onlyadmin">OnlyAdmin</a></li>
             </ul>
-            <ul class="nav navbar-nav">
-                <li><a href="/manageuser">Manage User</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('auth.logout') }}">Sign Out</a></li>
-                {% else %}
-                <li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
-                {% endif %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/manageuser">Manage User</a></li>
+                        <li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">Sign Out</a></li>
+                    </ul>
+                </li>
+                        {% else %}
+                        <li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
+                        {% endif %}
             </ul>
         </div>
     </div>

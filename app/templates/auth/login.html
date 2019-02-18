@@ -21,16 +21,16 @@
     <p>几个测试用户，供大家体验使用，如果大家测试修改密码，请最后再改回原密码，谢谢！</p>
     <ul>
         <p>
-    普通用户1： user1/test1
+    普通用户1： user1@luobo.com/test1
         </p>
         <p>
-    普通用户2： user2/test2
+    普通用户2： user2@luobo.com/test2
         </p>
         <p>
-    管理员用户1： admin1/admin1
+    管理员用户1： admin1@luobo.com/admin1
         </p>
         <p>
-    管理员用户2： admin2/admin2
+    管理员用户2： admin2@luobo.com/admin2
         </p>
     </ul>
 </div>
@@ -55,6 +55,9 @@
     -->
 <div class="col-md-12">
     <a class="btn btn-primary" href="{{ url_for('auth.githublogin') }}">Login with GitHub</a>
+</div>
+<div class="col-md-12">
+    <a class="btn btn-primary" href="{{ url_for('auth.login_codesend') }}">Login with SMS</a>
 </div>
 <div class="col-md-12">
     <a href="{{ url_for('auth.resetpwdemail') }}">

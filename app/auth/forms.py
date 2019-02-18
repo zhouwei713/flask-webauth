@@ -5,7 +5,7 @@
 """
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, IntegerField, FormField, FieldList
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from ..models import WebUser
 from wtforms import ValidationError
@@ -62,3 +62,13 @@ class ResetPwdForm(FlaskForm):
     def validate_email(self, field):
         if WebUser.query.filter_by(email=field.data).first() is None:
             raise ValidationError('This Email is Invalid')
+
+
+class LoginSMSCodeForm(FlaskForm):
+    phonenumber = IntegerField('Your Phone Number', validators=[DataRequired()])
+    submit = SubmitField('Send validate code')
+
+
+class LoginSMSForm(FlaskForm):
+    validatacode = IntegerField('Enter validate code')
+    submit = SubmitField('Login')

@@ -6,13 +6,14 @@
 
 from flask import render_template, redirect, request, url_for, flash, session
 from . import auth
-from .forms import LoginForm, RegisterForm, ChangePwdForm, ResetPwdEmailForm, ResetPwdForm
-from ..models import WebUser, ThirdOAuth
+from .forms import LoginForm, RegisterForm, ChangePwdForm, ResetPwdEmailForm, ResetPwdForm, LoginSMSForm, LoginSMSCodeForm
+from ..models import WebUser, ThirdOAuth, Role, UserPhone
 from flask_login import login_user, login_required, logout_user, current_user
 from .. import github
 import time
 from app import db
 from sendemail import sendmail
+from sendsms import sendsms, generate_code, decoding_code
 
 
 @auth.before_app_request
@@ -68,7 +69,7 @@ def authorized(access_token):
     avatar = response['avatar_url']
     user = WebUser.query.filter_by(username=username).first()
     if user is None:
-        user = WebUser(username=username, user_id=time.time())
+        user = WebUser(username=username, user_id=time.time(), confirmed=True)
         db.session.add(user)
         db.session.commit()
         thirduser = ThirdOAuth(user_id=WebUser.query.filter_by(username=username).first().user_id,
@@ -130,6 +131,47 @@ def register_confirm():
         flash('A Confirmation email has been sent to you by your registered email.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
+
+
+@auth.route('/logincodesend/', methods=['GET', 'POST'])
+def login_codesend():
+    codeform = LoginSMSCodeForm()
+    if codeform.validate_on_submit():
+        num = codeform.phonenumber.data
+        user = UserPhone.query.filter_by(phone=num).first()
+        if user is None:
+            user = UserPhone(phone=num)
+            db.session.add(user)
+            db.session.commit()
+        code = generate_code()
+        decod_code = decoding_code(code)
+        sendsms(decod_code, '+86' + str(num))
+        flash('Have send a validate code to your phone')
+        return redirect(url_for('.login_codeverify', code=code, num=num))
+    return render_template('auth/logincodesend.html', form=codeform)
+
+
+@auth.route('/logincodeverify/<code>/<num>', methods=['GET', 'POST'])
+def login_codeverify(code, num):
+    form = LoginSMSForm()
+    code = decoding_code(code)
+    if form.validate_on_submit():
+        if str(form.validatacode.data) == code:
+            webuser = WebUser.query.filter_by(phone=num).first()
+            if webuser is None:
+                webuser = WebUser(username=num, phone=num, user_id=time.time(), confirmed=True)
+                db.session.add(webuser)
+                db.session.commit()
+            phoneuser = UserPhone.query.filter_by(phone=num).first()
+            if phoneuser:
+                phoneuser.user_id = webuser.user_id
+                db.session.add(phoneuser)
+                db.session.commit()
+                login_user(webuser)
+                return redirect(url_for('main.index'))
+        flash('Invalid verify code')
+        return redirect(url_for('.login_codeverify', code=code, num=num))
+    return render_template('auth/logincodeverify.html', form=form)
 
 
 @auth.route('/confirm/<token>')

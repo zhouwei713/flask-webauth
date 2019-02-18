@@ -13,18 +13,36 @@
 <div class="page-header">
     <h1>Home</h1>
 </div>
-<div class="col-md-4">
-    这是首页
-</div>
+
 <div class="col-md-12">
 {% if current_user.is_authenticated %}
-    {{ current_user.username }}
-    {{ name }}
+    {% if current_user.username %}
+    Hi, {{ current_user.username }}
     <div>
     <img style="-webkit-user-select: none;" src="{{ avatar }}" />
     </div>
+    {% elif current_user.phone %}
+    Hi, {{ current_user.phone }}
+    {% endif %}
 {% else %}
     Your are not login yet
 {% endif %}
+</div>
+<div class="col-md-4">
+    <p>几个测试用户，供大家体验使用，如果大家测试修改密码，请最后再改回原密码，谢谢！</p>
+    <ul>
+        <p>
+    普通用户1： user1@luobo.com/test1
+        </p>
+        <p>
+    普通用户2： user2@luobo.com/test2
+        </p>
+        <p>
+    管理员用户1： admin1@luobo.com/admin1
+        </p>
+        <p>
+    管理员用户2： admin2@luobo.com/admin2
+        </p>
+    </ul>
 </div>
 {% endblock %}
