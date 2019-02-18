@@ -13,9 +13,9 @@ from config import Config
 
 
 def sendsms(code, num):
-    account_sid = os.environ.get('A_SID') or 'AC4918bc12e1d27d6cd50d2497de6068aa'
-    auth_token = os.environ.get('A_TK') or '103250f358bf4467895e71501f17a977'
-    mytwilio_num = os.environ.get('T_NUM') or '+18062566210'
+    account_sid = os.environ.get('A_SID')
+    auth_token = os.environ.get('A_TK')
+    mytwilio_num = os.environ.get('T_NUM')
     client = Client(account_sid, auth_token)
     message = client.messages.create(
         from_=mytwilio_num,

@@ -113,7 +113,7 @@ def user(username):
     if 'userid' in session:
         thirduser = ThirdOAuth.query.filter_by(user_id=session['userid']).first()
         if thirduser:
-            response = github.get('thirduser', access_token=thirduser.oauth_access_token)
+            response = github.get('user', access_token=thirduser.oauth_access_token)
             avatar = response['avatar_url']
             gituser = response['login']
             return render_template('user.html', user=user, avatar=avatar, gituser=gituser)

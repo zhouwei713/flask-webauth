@@ -14,20 +14,6 @@
     <h1>Home</h1>
 </div>
 
-<div class="col-md-12">
-{% if current_user.is_authenticated %}
-    {% if current_user.username %}
-    Hi, {{ current_user.username }}
-    <div>
-    <img style="-webkit-user-select: none;" src="{{ avatar }}" />
-    </div>
-    {% elif current_user.phone %}
-    Hi, {{ current_user.phone }}
-    {% endif %}
-{% else %}
-    Your are not login yet
-{% endif %}
-</div>
 <div class="col-md-4">
     <p>几个测试用户，供大家体验使用，如果大家测试修改密码，请最后再改回原密码，谢谢！</p>
     <ul>
