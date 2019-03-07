@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}{% endblock %}
+{% block title %}Flask - Login{% endblock %}
+{% block head %}
+<link rel="shortcut icon" href="/static/icon/background-dragonv2.jpg">
+<link rel="icon" href="/static/icon/background-dragonv2.jpg" type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='login/css/style.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+{% endblock %}
+{% block header %}{% endblock %}
+{% block cover %}{% endblock %}
+{% block content %}
+<body>
+<div class="cotn_principal">
+  <div class="cont_centrar">
+    <div class="cont_login">
+      <div class="cont_info_log_sign_up">
+        <div class="col_md_login">
+          <div class="cont_ba_opcitiy">
+            <h2>LOGIN</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur.</p>
+            <button class="btn_login" onClick="cambiar_login()">LOGIN</button>
+          </div>
+        </div>
+        <div class="col_md_sign_up">
+          <div class="cont_ba_opcitiy">
+            <h2>SIGN UP</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur.</p>
+            <button class="btn_sign_up" onClick="cambiar_sign_up()">SIGN UP</button>
+          </div>
+        </div>
+      </div>
+      <div class="cont_back_info">
+        <div class="cont_img_back_grey"> <img src="/static/login/jiangshan.jpg" alt="" /> </div>
+      </div>
+      <div class="cont_forms" >
+        <div class="cont_img_back_"> <img src="/static/login/jiangshan.jpg" alt="" /> </div>
+        <div class="cont_form_login"> <a href="#" onClick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
+          <h2>LOGIN</h2>
+          <input name="email" type="text" id="email" placeholder="Email" />
+          <input name="password" type="password" id="password" placeholder="Password" />
+          <button type="submit" class="btn_login" onClick="myLogin()">LOGIN</button>
+        </div>
+        <div class="cont_form_sign_up"> <a href="#" onClick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
+          <h2>SIGN UP</h2>
+          <input name="email1" type="text" id="email1" placeholder="Email" />
+          <input name="name1" type="text" id="name1" placeholder="User" />
+          <input name="password1" id="password1" type="password" placeholder="Password" />
+          <input name="cmpassword1" id="cmpassword1" type="password" placeholder="Confirm Password" />
+          <button type="submit" class="btn_sign_up" onClick="sign_up()">SIGN UP</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/static/login/js/index.js"></script>
+<script>
+function myLogin(){
+    var data = {};
+    data['email'] = $("#email").val();
+    data['password'] = $("#password").val();
+    $.ajax(
+        {
+           type:'POST',
+           url: '{{ url_for('auth.login_check') }}',
+           data: data,
+{#           dataType:'json',#}
+           success:function (data) {
+               if ( data == 'error' ){
+                     alert("Invalid username or password.");
+               }else if (data == 'success'){
+                   window.location.href="{{ url_for('main.index') }}";
+               }
+           },
+           error:function (xhr, type) {
+
+           }
+        }
+    );
+}
+function sign_up(){
+    var data = {};
+    data['email1'] = $("#email1").val();
+    data['password1'] = $("#password1").val();
+    data['name1'] = $("#name1").val();
+    $.ajax(
+        {
+           type:'POST',
+           url: '{{ url_for('auth.register_check') }}',
+           data: data,
+           {#dataType:'json',#}
+           success:function (data) {
+               if ( data == 'error' ){
+                     alert("Email had been registed!");
+               }else if (data == 'success'){
+                   window.location.href="{{ url_for('main.index') }}";
+               }
+           },
+           error:function (xhr, type) {
+           }
+        }
+    );
+}
+</script>
+</body>
+{% endblock %}
+{% block footer %}{% endblock %}

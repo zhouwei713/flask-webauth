@@ -86,14 +86,14 @@ def secret():
 @main.route('/needconfirm')
 @login_required
 def needconfirm():
-    return 'Only confirmed users are allowed!'
+    return 'Good! Only confirmed users are allowed!'
 
 
 @main.route('/onlyadmin')
 @login_required
 def onlyadmin():
     if current_user.is_admin():
-        return 'Your are admin so you can see this page'
+        return 'Good! Your are admin so you can see this page'
     else:
         return 'You are not admin user, Only admin user can access this page'
 

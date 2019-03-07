@@ -12,8 +12,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = "hardtoguess"
-    GITHUB_CLIENT_ID = 'cf1de35ef11d20bcdab2'
-    GITHUB_CLIENT_SECRET = 'ba7c8c83be9cd574eb3da1b5e704d11d35acccb8'
+    GITHUB_CLIENT_ID =  os.environ.get('GCI')
+    GITHUB_CLIENT_SECRET = os.environ.get('GCS')
     @staticmethod
     def init_app(app):
         pass

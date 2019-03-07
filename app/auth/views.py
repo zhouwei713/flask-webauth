@@ -35,10 +35,34 @@ def login():
                 if user.is_block() is False:
                     flash('You have been blocked, please contact admin')
                     return redirect(url_for('.login'))
-                login_user(user, form.remember_me.data)
+                login_user(user)
                 return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password!')
     return render_template('auth/login.html', form=form)
+
+
+@auth.route('/loginnew', methods=['GET','POST'])
+def login_new():
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = WebUser.query.filter_by(email=form.email.data).first()
+        if user is not None and user.verify_password(form.password.data):
+            login_user(user)
+            return redirect(request.args.get('next') or url_for('main.index'))
+        flash('Invalid username or password.')
+    return render_template('login/login.html', form=form)
+
+
+@auth.route('/login-check', methods=['GET', 'POST'])
+def login_check():
+    email = request.form.get('email', '')
+    password = request.form.get('password', '')
+    user = WebUser.query.filter_by(email=email).first()
+    if user is not None and user.verify_password(password):
+        login_user(user)
+        return "success"
+    else:
+        return "error"
 
 
 @auth.route('/logout')
@@ -114,6 +138,25 @@ def register():
         flash('You can login now.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
+
+
+@auth.route('/register-check', methods=['GET', 'POST'])
+def register_check():
+    email = request.form.get('email1', '')
+    password = request.form.get('password1', '')
+    name = request.form.get('name1', '')
+    user = WebUser.query.filter_by(email=email).first()
+    if user is None:
+        newuser = WebUser(email=email, username=name, password=password,
+                          user_id=time.time(), confirmed=True)
+        db.session.add(newuser)
+        db.session.commit()
+        # token = newuser.generate_confirmation_token()
+        # text = render_template('auth/email/confirm.txt', user=newuser, token=token)
+        # sendmail(newuser.email, 'Confirm your Account', text)
+        return "success"
+    else:
+        return "error"
 
 
 @auth.route('/registerconfirm', methods=['GET', 'POST'])

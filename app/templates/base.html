@@ -24,6 +24,9 @@
             <ul class="nav navbar-nav">
                 <li><a href="/onlyadmin">OnlyAdmin</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('auth.login_new') }}">New Login Page</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                 <li class="dropdown">

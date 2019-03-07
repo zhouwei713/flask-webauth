@@ -83,7 +83,7 @@ class WebUser(UserMixin, db.Model):
 
     @property
     def password(self):
-        raise AttributeError('password is not readable attribute')
+        raise AttributeError('You can not read the password')
 
     @password.setter
     def password(self, password):
